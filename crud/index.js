@@ -14,14 +14,13 @@ const {
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBxS_DcIVcgvyeeEyHerB2tARK2CKPUkFw",
-    authDomain: "fir-database-first.firebaseapp.com",
-    projectId: "fir-database-first",
-    storageBucket: "fir-database-first.appspot.com",
-    messagingSenderId: "1025370782193",
-    appId: "1:1025370782193:web:171dd3b7112b5a138c6c50",
-    measurementId: "G-47T980FS0Y"
-};
+    apiKey: "AIzaSyDoqVNDfgruXV9LJjPfqqUNv33OSA2BlQY",
+    authDomain: "primeiroserver-346e7.firebaseapp.com",
+    projectId: "primeiroserver-346e7",
+    storageBucket: "primeiroserver-346e7.appspot.com",
+    messagingSenderId: "102326575401",
+    appId: "1:102326575401:web:84d0c0d3444309e7431738"
+  };
 
 const app = initializeApp(firebaseConfig);
 
