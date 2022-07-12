@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const usuarios = require("./api/usuarios/usuarios.controller");
+const usuario = require("./api/usuarios/usuarios.controller");
+const authors = require("./api/authors/author.controller");
 
 
-router.use("/usuarios" , usuarios);
+router.use("/usuario" , usuario);
+router.use("/authors" , authors);
 
 module.exports = router;

@@ -1,4 +1,6 @@
 const { initializeApp } = require('firebase/app');
+const { getAuth, onAuthStateChanged } = require('firebase/auth');
+
 const {
     getFirestore,
     collection,
@@ -13,18 +15,26 @@ const {
 } = require('firebase/firestore/lite');
 
 
-const firebaseConfig = {
+const firebaseConfig = initializeApp({
     apiKey: "AIzaSyDoqVNDfgruXV9LJjPfqqUNv33OSA2BlQY",
     authDomain: "primeiroserver-346e7.firebaseapp.com",
     projectId: "primeiroserver-346e7",
     storageBucket: "primeiroserver-346e7.appspot.com",
     messagingSenderId: "102326575401",
-    appId: "1:102326575401:web:84d0c0d3444309e7431738"
-  };
+    appId: "1:102326575401:web:9f945ec7cdf9a5fe431738",
+    measurementId: "G-KQ9LZPLRF5"
+  });
 
-const app = initializeApp(firebaseConfig);
+  const db = getFirestore();
+  const auth = getAuth(firebaseConfig);
 
-const db = getFirestore();
+onAuthStateChanged(auth, user => {
+    if (user == null) {
+        console.log('Usuário deslogado');
+    } else {
+        console.log('Usuário logado:', user.email);
+    }
+});
 
 async function save(nomeTabela, id, dado) {
     if (id) {
@@ -64,7 +74,20 @@ async function getById(nomeTabela, id) {
 async function remove(nomeTabela, id){
     const dado = await deleteDoc(doc(db, nomeTabela, id));
     return {
-        message: `${id} deleted`
+        message:  "Autor excluído com sucesso!"
+    }
+}
+
+
+async function getById(table_name, id) {
+    const docTable = doc(db, table_name, id);
+    const docResp = await getDoc(docTable);
+    
+    if (docResp.exists()) {
+        return docResp.data();
+    }
+    else {
+        return new Error("Not found!");
     }
 }
 
